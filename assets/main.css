@@ -48,6 +48,7 @@ body {
 
 #links {
   width: 400px;
+  max-width: 90vw;
   text-align: left;
   font-size: x-large;
   color: black;

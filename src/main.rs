@@ -44,12 +44,13 @@ pub fn Hero() -> Element {
                 }
                 Resource {
                     src: "https://www.instagram.com/omirfest/",
-                    title: "OmirFest",
+                    title: "ÖmirFest",
                     platform: SocialMedia::Instagram,
                 }
                 Resource {
                     src: "https://www.instagram.com/omirconf/",
-                    title: "OmirConf",
+                    title: "ÖmirConf",
+                    description: "Центрально-Азиатская конференция по защите животных",
                     platform: SocialMedia::Instagram,
                 }
                 Resource {
@@ -65,11 +66,21 @@ pub fn Hero() -> Element {
                     platform: SocialMedia::Telegram,
                 }
                 Resource {
-
                     src: "",
                     title: "Vegan🌱Almaty",
                     description: "Группа веганов Алматы (вход по приглашению участника)",
                     platform: SocialMedia::Telegram,
+                }
+                Resource { 
+                    src: "https://www.instagram.com/izgi_tamaq/",
+                    title: "Izgi tamaq - Добрая еда🌱",
+                    description: "Веган еда и события Алматы",
+                    platform: SocialMedia::Instagram
+                }
+                Resource { 
+                    src: "https://www.happycow.net/mobile",
+                    title: "Happy Cow",
+                    description: "Приложение с картой веган мест",
                 }
             }
         }
@@ -89,7 +100,6 @@ fn get_icon_for_platform(platform: SocialMedia) -> Element {
             div { class: "icon-holder",
                 img {
                     src: "https://img.icons8.com/?size=100&id=RhYNENh5cxlS&format=png&color=000000",
-                    // src: "https://img.icons8.com/ios/100/instagram-new--v1.png",
                     alt: "instagram",
                     width: "30px",
                 }
@@ -100,7 +110,6 @@ fn get_icon_for_platform(platform: SocialMedia) -> Element {
             div { class: "icon-holder",
                 img {
                     src: "https://img.icons8.com/?size=100&id=lUktdBVdL4Kb&format=png&color=000000",
-                    // src: "https://img.icons8.com/?size=100&id=A4uyUh8LBg90&format=png&color=000000",
                     alt: "instagram",
                     width: "28px",
                 }

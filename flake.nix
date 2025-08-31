@@ -34,41 +34,41 @@
         };
         formatter = pkgs.nixfmt-rfc-style;
 
-        packages.default = let
-          cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
-          rev = toString (self.shortRev or self.dirtyShortRev or self.lastModified or "unknown");
-        in
-        pkgs.rustPlatform.buildRustPackage {
-          pname = cargoToml.package.name;
-          version = "${cargoToml.package.version}-${rev}";
-          src = ./.;
-          strictDeps = true;
-          buildInputs = rustBuildInputs;
-          nativeBuildInputs = with pkgs; [
-            dioxus.packages.${system}.dioxus-cli
-            rustToolchain
-            rustPlatform.bindgenHook
-            wasm-bindgen-cli_0_2_100
-            binaryen
-          ] ++ rustBuildInputs;
+        # packages.default = let
+        #   cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
+        #   rev = toString (self.shortRev or self.dirtyShortRev or self.lastModified or "unknown");
+        # in
+        # pkgs.rustPlatform.buildRustPackage {
+        #   pname = cargoToml.package.name;
+        #   version = "${cargoToml.package.version}-${rev}";
+        #   src = ./.;
+        #   strictDeps = true;
+        #   buildInputs = rustBuildInputs;
+        #   nativeBuildInputs = with pkgs; [
+        #     dioxus.packages.${system}.dioxus-cli
+        #     rustToolchain
+        #     rustPlatform.bindgenHook
+        #     wasm-bindgen-cli_0_2_100
+        #     binaryen
+        #   ] ++ rustBuildInputs;
           
-          buildPhase = ''
-            echo "Running dx bundle --release --web --ssg..."
-            dx bundle --release --web --ssg
-            echo "dx bundle completed. Output should be in 'dist' folder."
-          '';
+        #   buildPhase = ''
+        #     echo "Running dx bundle --release --web --ssg..."
+        #     dx bundle --release --web --ssg
+        #     echo "dx bundle completed. Output should be in 'dist' folder."
+        #   '';
 
-          installPhase = ''
-            echo "Installing bundled static assets to pubc..."
-            rm -rf public
-            mkdir -p public
-            # Copy all contents of the generated 'dist' directory to the output root
-            cp -r target/dx/$pname/release/web/public public
-            echo "Installation complete."
-          '';
-          cargoLock.lockFile = ./Cargo.lock;
-          meta.mainProgram = "server";
-        };
+        #   installPhase = ''
+        #     echo "Installing bundled static assets to pubc..."
+        #     rm -rf public
+        #     mkdir -p public
+        #     # Copy all contents of the generated 'dist' directory to the output root
+        #     cp -r target/dx/$pname/release/web/public public
+        #     echo "Installation complete."
+        #   '';
+        #   cargoLock.lockFile = ./Cargo.lock;
+        #   meta.mainProgram = "server";
+        # };
 
         devShells.default = pkgs.mkShell rec {
           name = "dioxus-dev";
